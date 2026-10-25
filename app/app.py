@@ -33,5 +33,14 @@ def get_task(task_id):
         return jsonify(error="not found"), 404
     return jsonify(task)
 
+@app.route("/tasks/<int:task_id>/done", methods=["POST"])
+def mark_done(task_id):
+    task = tasks.get(task_id)
+    if task is None:
+        return jsonify(error="not found"), 404
+    task["done"] = True
+    return jsonify(task)
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
