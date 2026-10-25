@@ -1,5 +1,8 @@
 from flask import Flask, jsonify
 
+tasks = {}
+next_id = 1
+
 app = Flask(__name__)
 
 
