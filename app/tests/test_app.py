@@ -27,3 +27,21 @@ def test_create_task(client):
 def test_create_task_requires_title(client):
     res = client.post("/tasks", json={})
     assert res.status_code == 400
+
+
+
+
+def test_get_missing_task(client):
+    assert client.get("/tasks/99").status_code == 404
+
+
+def test_mark_done(client):
+    client.post("/tasks", json={"title": "write pipeline"})
+    res = client.post("/tasks/1/done")
+    assert res.get_json()["done"] is True
+
+
+def test_delete_task(client):
+    client.post("/tasks", json={"title": "cleanup"})
+    assert client.delete("/tasks/1").status_code == 204
+    assert client.get("/tasks/1").status_code == 404
