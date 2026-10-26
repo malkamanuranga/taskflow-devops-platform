@@ -31,6 +31,7 @@ def create_task():
     task = {"id": next_id, "title": title, "done": False}
     tasks[next_id] = task
     next_id += 1
+    TASKS_CREATED.inc()
     return jsonify(task), 201
 
 
