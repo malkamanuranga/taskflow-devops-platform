@@ -4,7 +4,7 @@ tasks = {}
 next_id = 1
 
 REQUESTS = Counter("http_requests_total", "HTTP requests", ["method", "status"])
-
+TASKS_CREATED = Counter("tasks_created_total", "Tasks created")
 
 @app.after_request
 def count_request(response):
