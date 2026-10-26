@@ -3,6 +3,13 @@ from prometheus_client import CONTENT_TYPE_LATEST, Counter, generate_latest
 tasks = {}
 next_id = 1
 
+REQUESTS = Counter("http_requests_total", "HTTP requests", ["method", "status"])
+
+
+@app.after_request
+def count_request(response):
+    REQUESTS.labels(request.method, response.status_code).inc()
+    return response
 app = Flask(__name__)
 
 
