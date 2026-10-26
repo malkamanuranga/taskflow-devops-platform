@@ -55,6 +55,9 @@ def delete_task(task_id):
         return jsonify(error="not found"), 404
     return "", 204
 
+@app.route("/metrics")
+def metrics():
+    return Response(generate_latest(), mimetype=CONTENT_TYPE_LATEST)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
