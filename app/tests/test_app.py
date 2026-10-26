@@ -23,3 +23,7 @@ def test_create_task(client):
     res = client.post("/tasks", json={"title": "learn docker"})
     assert res.status_code == 201
     assert res.get_json()["title"] == "learn docker"
+
+def test_create_task_requires_title(client):
+    res = client.post("/tasks", json={})
+    assert res.status_code == 400
