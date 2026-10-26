@@ -12,3 +12,14 @@ def test_health(client):
     res = client.get("/health")
     assert res.status_code == 200
     assert res.get_json() == {"status": "ok"}
+
+def test_health(client):
+    res = client.get("/health")
+    assert res.status_code == 200
+    assert res.get_json() == {"status": "ok"}
+
+
+def test_create_task(client):
+    res = client.post("/tasks", json={"title": "learn docker"})
+    assert res.status_code == 201
+    assert res.get_json()["title"] == "learn docker"
