@@ -41,6 +41,12 @@ def mark_done(task_id):
     task["done"] = True
     return jsonify(task)
 
+@app.route("/tasks/<int:task_id>", methods=["DELETE"])
+def delete_task(task_id):
+    if tasks.pop(task_id, None) is None:
+        return jsonify(error="not found"), 404
+    return "", 204
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
