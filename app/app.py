@@ -1,4 +1,5 @@
-from flask import Flask, jsonify, request
+from flask import Flask, Response, jsonify, request
+from prometheus_client import CONTENT_TYPE_LATEST, Counter, generate_latest
 tasks = {}
 next_id = 1
 
