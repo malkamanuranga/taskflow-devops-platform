@@ -8,3 +8,8 @@ COPY requirements-dev.txt .
 RUN pip install --no-cache-dir -r requirements-dev.txt
 COPY . .
 RUN pytest -q
+
+FROM base AS runtime
+COPY app.py .
+EXPOSE 5000
+CMD ["gunicorn", "--workers", "1", "--threads", "4", "-b", "0.0.0.0:5000", "app:app"]
