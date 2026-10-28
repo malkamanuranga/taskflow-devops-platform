@@ -3,3 +3,8 @@ terraform {
     kubernetes = { source = "hashicorp/kubernetes", version = "~> 2.30" }
   }
 }
+
+provider "kubernetes" {
+  config_path    = pathexpand("~/.kube/config")
+  config_context = "kind-devops"
+}
