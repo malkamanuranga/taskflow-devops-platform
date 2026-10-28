@@ -6,3 +6,12 @@ spec:
   selector: { matchLabels: { app: taskflow } }
   template:
     metadata: { labels: { app: taskflow } }
+    spec:
+      containers:
+        - name: taskflow
+          image: taskflow:local
+          imagePullPolicy: Never
+          ports: [{ containerPort: 5000 }]
+          readinessProbe:
+            httpGet: { path: /health, port: 5000 }
+            initialDelaySeconds: 5
