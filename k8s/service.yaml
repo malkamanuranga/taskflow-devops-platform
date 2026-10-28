@@ -1,4 +1,6 @@
 apiVersion: v1
 kind: Service
 metadata: { name: taskflow, namespace: taskflow, labels: { app: taskflow } }
-
+spec:
+  selector: { app: taskflow }
+  ports: [{ name: http, port: 5000, targetPort: 5000 }] hhga
