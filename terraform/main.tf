@@ -12,4 +12,4 @@ provider "kubernetes" {
 resource "kubernetes_namespace" "taskflow" {
   metadata { name = "taskflow" }
 } 
-} clear()
+
