@@ -1,1 +1,8 @@
-
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata: { name: taskflow, namespace: taskflow }
+spec:
+  selector:
+    matchLabels: { app: taskflow }
+  endpoints:
+    - { port: http, path: /metrics, interval: 15s }
