@@ -10,5 +10,13 @@ pipeline {
       steps { sh 'kind load docker-image taskflow:$TAG --name devops' }
     }
 
-
+stage('Deploy') {
+      steps {
+        sh 'kubectl apply -f k8s/'
+        sh 'kubectl -n taskflow set image deployment/taskflow taskflow=taskflow:$TAG'
+        sh 'kubectl -n taskflow rollout status deployment/taskflow'
+      }
+    }
+  }
+} } }
   
